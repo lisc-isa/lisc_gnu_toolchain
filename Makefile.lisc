@@ -1,7 +1,8 @@
-BUILD_DIR ?= $(CURDIR)/build
-PKG_DIR ?= $(CURDIR)/install
-TOOL_PATCH_DIR ?= $(CURDIR)/tool_patches
-TOOL_CHAIN_DIR ?= $(CURDIR)/toolchain
+RI5CY_DIR ?= $(CURDIR)/ri5cy_gnu_toolchain
+BUILD_DIR ?= $(RI5CY_DIR)/build
+PKG_DIR ?= $(RI5CY_DIR)/install
+TOOL_PATCH_DIR ?= $(RI5CY_DIR)/tool_patches
+TOOL_CHAIN_DIR ?= $(RI5CY_DIR)/toolchain
 
 ifdef ZERORISCY_PULP
 ARCH_FLAGS?=-march=IMXpulpslim -m16r
@@ -38,11 +39,11 @@ build:
 			done; \
 		fi
 	mkdir -p $(BUILD_DIR)
-	cd $(BUILD_DIR) && $(CURDIR)/$(TOOL_CHAIN_DIR)/configure --with-xlen=32 --with-arch=IM --disable-atomic --disable-float --disable-multilib --prefix=$(PKG_DIR)
+	cd $(BUILD_DIR) && $(TOOL_CHAIN_DIR)/configure --with-xlen=32 --with-arch=IM --disable-atomic --disable-float --disable-multilib --prefix=$(PKG_DIR)
 	cd $(BUILD_DIR) && make && make install
 
-	cd $(BUILD_DIR) && tar mxvfz $(CURDIR)/riscv_tools_delta.tar.gz && tar mxvfz $(CURDIR)/lisc_tools_delta.tar.gz
-	cd $(TOOL_CHAIN_DIR) && tar mxvfz $(CURDIR)/riscv_tools_delta.tar.gz && tar mxvfz $(CURDIR)/lisc_tools_delta.tar.gz
+	cd $(BUILD_DIR) && tar mxvfz $(RI5CY_DIR)/riscv_tools_delta.tar.gz && tar mxvfz $(RI5CY_DIR)/lisc_tools_delta.tar.gz
+	cd $(TOOL_CHAIN_DIR) && tar mxvfz $(RI5CY_DIR)/riscv_tools_delta.tar.gz && tar mxvfz $(RI5CY_DIR)/lisc_tools_delta.tar.gz
 
 	for file in $(PATCH_FILES); do cd $(BUILD_DIR)/src/gcc/gcc && rm -f $$file && ln $(TOOL_CHAIN_DIR)/gcc/gcc/$$file $$file; done
 	for file in $(PATCH_FILES); do cd $(BUILD_DIR)/src/newlib-gcc/gcc && rm -f $$file && ln $(TOOL_CHAIN_DIR)/gcc/gcc/$$file $$file; done
@@ -54,5 +55,3 @@ build:
 	cd $(BUILD_DIR)/build-gcc-newlib/ && make clean && make && make install
 
 	cd $(BUILD_DIR)/build-gcc-newlib && cat Makefile | sed s/'CXXFLAGS_FOR_TARGET = -g -O2'/'CXXFLAGS_FOR_TARGET = -g -O2 $(ARCH_FLAGS)'/g | sed s/'CFLAGS_FOR_TARGET = -g -O2'/'CFLAGS_FOR_TARGET = -g -O2 $(ARCH_FLAGS)'/g > Makefile.new && mv Makefile.new Makefile && make clean all install
-
-        cd $(CURDIR)/install/bin && for var in `ls`; do mv -f "$var" `echo "$var" |sed 's/^..../lisc32/'`; done

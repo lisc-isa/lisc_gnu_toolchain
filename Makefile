@@ -1,18 +1,16 @@
-BUILD_DIR ?= $(CURDIR)/build
-
 ifdef ZERORISCY_PULP
-ARCH_FLAGS?=ZERORISCY_PULP
+MAKE_FLAGS?=ZERORISCY_PULP
 else
 ifdef ZERORISCY
-ARCH_FLAGS?=ZERORISCY
+MAKE_FLAGS?=ZERORISCY
 else
 ifdef MICRORISCY
-ARCH_FLAGS?=MICRORISCY
+MAKE_FLAGS?=MICRORISCY
 else
 ifdef RISCY_FPU
-ARCH_FLAGS?=RISCY_FPU
+MAKE_FLAGS?=RISCY_FPU
 else
-ARCH_FLAGS?=
+MAKE_FLAGS?=
 endif
 endif
 endif
@@ -23,6 +21,6 @@ endif
 
 build:  
 	if [ ! -e ri5cy_gnu_toolchain ]; then git clone https://github.com/pulp-platform/ri5cy_gnu_toolchain; fi
-	tar mcvfz lisc_tools_delta.tar.gz ./binutils && cp lisc_tools_delta.tar.gz ri5cy_gnu_toolchain
-	cp Makfile.lisc ./riscy_gnu_toolchain/Makefile
-	cd ./ri5cy_gnu_toolchain && make $(ARCH_FLAGS)
+	tar mcvfz lisc_tools_delta.tar.gz $(CURDIR)/binutils && cp lisc_tools_delta.tar.gz ri5cy_gnu_toolchain
+	cp Makefile.lisc $(CURDIR)/ri5cy_gnu_toolchain/Makefile
+	cd $(CURDIR)/ri5cy_gnu_toolchain && make $(MAKE_FLAGS)
