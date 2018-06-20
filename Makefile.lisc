@@ -1,4 +1,4 @@
-RI5CY_DIR ?= $(CURDIR)/ri5cy_gnu_toolchain
+RI5CY_DIR ?= $(CURDIR)
 BUILD_DIR ?= $(RI5CY_DIR)/build
 PKG_DIR ?= $(RI5CY_DIR)/install
 TOOL_PATCH_DIR ?= $(RI5CY_DIR)/tool_patches
