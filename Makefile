@@ -28,8 +28,10 @@ build:
 	
 install:
 	cp -rf ./ri5cy_gnu_toolchain/install/bin .
-	cd ./bin && for var in `ls`; do mv -f "$var" `echo "$var" |sed 's/^..../lisc/'`; done
-	
+	cd ./bin; \
+	FILES=$$(ls); \
+	for var in $$FILES; do \
+		mv -f $$var `echo "$$var" | sed 's/^..../lisc/'`; done
+
 clean:
-	rm -rf ./ri5cy_gnu_toolchain
 	rm -rf ./bin
