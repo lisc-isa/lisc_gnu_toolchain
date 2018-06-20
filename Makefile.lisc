@@ -4,16 +4,16 @@ PKG_DIR ?= $(RI5CY_DIR)/install
 TOOL_PATCH_DIR ?= $(RI5CY_DIR)/tool_patches
 TOOL_CHAIN_DIR ?= $(RI5CY_DIR)/toolchain
 
-ifdef ZERORISCY_PULP
+ifdef ZEROLISC_PULP
 ARCH_FLAGS?=-march=IMXpulpslim -m16r
 else
-ifdef ZERORISCY
-ARCH_FLAGS?=-march=IM -m16r
+ifdef ZEROLISC
+ARCH_FLAGS?=-march=IMC -m16r
 else
-ifdef MICRORISCY
+ifdef MICROLISC
 ARCH_FLAGS?=-march=I -m16r
 else
-ifdef RISCY_FPU
+ifdef LISC_FPU
 ARCH_FLAGS?=-march=IMFDXpulpv2 -m16r -mhard-float
 else
 ARCH_FLAGS?=-march=IMC -m16r
