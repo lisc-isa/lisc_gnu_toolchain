@@ -27,11 +27,11 @@ build:
 	cd $(CURDIR)/ri5cy_gnu_toolchain && make $(MAKE_FLAGS)
 	
 install:
-	cp -rf ./ri5cy_gnu_toolchain/install/bin .
-	cd ./bin; \
+	cp -rf ./ri5cy_gnu_toolchain/install/* .
+	cd ./install/bin; \
 	FILES=$$(ls); \
 	for var in $$FILES; do \
 		mv -f $$var `echo "$$var" | sed 's/^..../lisc/'`; done
 
 clean:
-	rm -rf ./bin
+	rm -rf ./install
