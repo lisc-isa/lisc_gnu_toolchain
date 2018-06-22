@@ -27,7 +27,7 @@ build:
 	cd $(CURDIR)/ri5cy_gnu_toolchain && make $(MAKE_FLAGS)
 	
 install:
-	cp -rf ./ri5cy_gnu_toolchain/install/* .
+	cp -rf ./ri5cy_gnu_toolchain/install .
 	cd ./install/bin; \
 	FILES=$$(ls); \
 	for var in $$FILES; do \
