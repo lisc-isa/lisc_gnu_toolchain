@@ -10,3 +10,6 @@ LISC指令系统是在RISC-V指令系统基础上开发的全新指令系统，�
 LISC指令系统用于北京大学信息科学技术学院《数字逻辑和微处理器设计》课程的教学之用，也向外界全面开放。参见LICENSE文件。
 
 lisc_gnu_toolchian采用https://github.com/pulp-platform/ri5cy_gnu_toolchain 工具链。更改了其中binutils的若干文件而成。
+
+GCC-6支持：
+  如果用GCC-6以上的版本编译，需make GCC6=1，将进行相应的补丁操作。
