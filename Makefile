@@ -16,6 +16,15 @@ endif
 endif
 endif
 
+ifdef GCC5
+GCC_FLAGS ?= GCC5=1
+else
+ifdef GCC6
+GCC_FLAGS ?= GCC6=1
+else
+GCC_FLAGS ?= 
+endif
+endif
 
 .PHONY: build
 
@@ -24,7 +33,7 @@ build:
 	cd lisc-toolchain && tar mcvfz lisc_tools_delta.tar.gz * && cp lisc_tools_delta.tar.gz $(CURDIR)/ri5cy_gnu_toolchain
 	cd origin-toolchain && tar mcvfz lisc_origin-toolchain_delta.tar.gz * && cp lisc_origin-toolchain_delta.tar.gz $(CURDIR)/ri5cy_gnu_toolchain
 	cp Makefile.lisc $(CURDIR)/ri5cy_gnu_toolchain/Makefile
-	cd $(CURDIR)/ri5cy_gnu_toolchain && make $(MAKE_FLAGS)
+	cd $(CURDIR)/ri5cy_gnu_toolchain && make $(MAKE_FLAGS) $(GCC_FLAGS)
 	
 install:
 	cp -rf ./ri5cy_gnu_toolchain/install .
