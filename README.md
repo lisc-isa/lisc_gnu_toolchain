@@ -14,7 +14,7 @@ LISC指令系统用于北京大学信息科学技术学院《数字逻辑和微�
 lisc_gnu_toolchian采用https://github.com/pulp-platform/ri5cy_gnu_toolchain 工具链。更改了其中binutils的若干文件而成。
 
 GCC-6支持：
-  如果用GCC-6以上的版本编译，需要打上ri5cy_gnu_toolchain/toolchain-patches/中的支持GCC-6的补丁。（未完成自动脚本支持）
+  如果用GCC-6以上的版本编译，需要打上ri5cy_gnu_toolchain/toolchain-patches/中的支持GCC-6的补丁。（注意，此目录下的patch末尾有一个特殊字符，可能产生不兼容问题，建议手动将最后一个字符删除。）
 
 # ri5cy_gnu_toolchain
 Introduction
