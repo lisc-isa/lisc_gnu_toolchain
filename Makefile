@@ -41,6 +41,7 @@ install:
 	FILES=$$(ls); \
 	for var in $$FILES; do \
 		mv -f $$var `echo "$$var" | sed 's/^..../lisc/'`; done
+	cp -f ./ri5cy_gnu_toolchain/install/bin/* ./install/bin
 
 clean:
 	rm -rf ./install
