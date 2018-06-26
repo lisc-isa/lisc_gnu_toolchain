@@ -30,8 +30,8 @@ endif
 
 build:
 	if [ ! -e ri5cy_gnu_toolchain ]; then git clone https://github.com/pulp-platform/ri5cy_gnu_toolchain; fi
-	cd lisc-toolchain && tar mcvfz lisc_tools_delta.tar.gz * && cp lisc_tools_delta.tar.gz $(CURDIR)/ri5cy_gnu_toolchain
-	cd origin-toolchain && tar mcvfz lisc_origin-toolchain_delta.tar.gz * && cp lisc_origin-toolchain_delta.tar.gz $(CURDIR)/ri5cy_gnu_toolchain
+	cd lisc-toolchain && tar mcvfz lisc_tools_delta.tar.gz * && cp lisc_tools_delta.tar.gz $(CURDIR)/ri5cy_gnu_toolchain && rm lisc_tools_delta.tar.gz
+	cd origin-toolchain && tar mcvfz lisc_origin-toolchain_delta.tar.gz * && cp lisc_origin-toolchain_delta.tar.gz $(CURDIR)/ri5cy_gnu_toolchain && rm lisc_origin-toolchain_delta.tar.gz
 	cp Makefile.lisc $(CURDIR)/ri5cy_gnu_toolchain/Makefile
 	cd $(CURDIR)/ri5cy_gnu_toolchain && make $(MAKE_FLAGS) $(GCC_FLAGS)
 	
