@@ -2,7 +2,7 @@ RI5CY_DIR ?= $(CURDIR)
 BUILD_DIR ?= $(RI5CY_DIR)/build
 PKG_DIR ?= $(RI5CY_DIR)/install
 ifdef GCC6
-TOOL_PATCH_DIR ?= $(RI5CY_DIR)/toolchain_patches
+TOOL_PATCH_DIR ?= $(RI5CY_DIR)/toolchain-patches
 endif
 TOOL_CHAIN_DIR ?= $(RI5CY_DIR)/toolchain
 
