@@ -21,14 +21,17 @@ Introduction
 This is a port of the RISCV GCC toolchain, which has been extended to support the extensions of the Pulpino core.
 
 Build
+
 Run the following command to build the toolchain (by default for riscy, see the next section to select another core):
 
 make
+
 This will download a specific version of the RISCV toolchain based on gcc 5.2, patch it with extensions for Pulpino and compile it.
 
 The resulting toolchains should be in the install directory.
 
 Supported cores
+
 This toolchain supports the following Pulpino cores :
 
 Riscy. Compile the toolchain with: make
@@ -40,6 +43,7 @@ Zeroriscy. Compile the toolchain with: make ZERORISCY=1
 Microriscy. Compile the toolchain with: make MICRORISCY=1
 
 Usage
+
 The toolchain can be used as the standard RISCV toolchain except that one of the following option must be used:
 
 Riscy: -march=IMXpulpv2
