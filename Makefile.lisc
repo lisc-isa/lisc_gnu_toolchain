@@ -33,6 +33,7 @@ build:
 	if [ ! -e $(TOOL_CHAIN_DIR) ]; then git clone https://github.com/riscv/riscv-gnu-toolchain.git $(TOOL_CHAIN_DIR); fi
 	cd $(TOOL_CHAIN_DIR) && git checkout -f d038d596dc1d8e47ace22ab742cd40c2f22d659e
 	cd $(TOOL_CHAIN_DIR) && tar mxvfz $(RI5CY_DIR)/lisc_origin-toolchain_delta.tar.gz
+	cd $(TOOL_PATCH_DIR) && tar mxvfz $(RI5CY_DIR)/toolchain-patches_delta.tar.gz
 	if [ -d $(TOOL_PATCH_DIR) ]; then \
 			cd $(TOOL_CHAIN_DIR); \
 			FILES=$$(ls $(TOOL_PATCH_DIR)/*.patch | sort); \
