@@ -10,7 +10,7 @@ else
 ifdef LISC_FPU
 MAKE_FLAGS?= LISC_FPU=1
 else
-MAKE_FLAGS?=
+MAKE_FLAGS?= MICRO=1
 endif
 endif
 endif
@@ -32,13 +32,10 @@ build:
 	cp Makefile.lisc $(CURDIR)/ri5cy_gnu_toolchain/Makefile
 	cd $(CURDIR)/ri5cy_gnu_toolchain && make $(MAKE_FLAGS) $(GCC_FLAGS)
 	
-install:
-	cp -rf ./ri5cy_gnu_toolchain/install .
-	cd ./install/bin; \
+	cd $LISC/bin; \
 	FILES=$$(ls); \
 	for var in $$FILES; do \
 		mv -f $$var `echo "$$var" | sed 's/^...../lisc/'`; done
 
 clean:
-	rm -rf ./install
-	
+	rm -rf 
