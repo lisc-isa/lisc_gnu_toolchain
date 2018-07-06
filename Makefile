@@ -10,7 +10,7 @@ else
 ifdef LISC_FPU
 MAKE_FLAGS?= LISC_FPU=1
 else
-MAKE_FLAGS?= MICRO=1
+MAKE_FLAGS?= ZEROLISC=1
 endif
 endif
 endif
