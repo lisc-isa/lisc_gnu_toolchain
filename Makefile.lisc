@@ -1,6 +1,7 @@
 RI5CY_DIR ?= $(CURDIR)
 BUILD_DIR ?= $(RI5CY_DIR)/build
-PKG_DIR ?= $(RI5CY_DIR)/install
+LISC ?= $(RI5CY_DIR)/install
+
 ifdef GCC6
 TOOL_PATCH_DIR ?= $(RI5CY_DIR)/toolchain-patches
 endif
@@ -43,7 +44,7 @@ build:
 			done; \
 		fi
 	mkdir -p $(BUILD_DIR)
-	cd $(BUILD_DIR) && $(TOOL_CHAIN_DIR)/configure --with-xlen=32 --with-arch=IM --disable-atomic --disable-float --disable-multilib --prefix=$(PKG_DIR)
+	cd $(BUILD_DIR) && $(TOOL_CHAIN_DIR)/configure --with-xlen=32 --with-arch=IM --disable-atomic --disable-float --disable-multilib --prefix=$(LISC)
 	cd $(BUILD_DIR) && make && make install
 
 	cd $(BUILD_DIR) && tar mxvfz $(RI5CY_DIR)/riscv_tools_delta.tar.gz && tar mxvfz $(RI5CY_DIR)/lisc_tools_delta.tar.gz
