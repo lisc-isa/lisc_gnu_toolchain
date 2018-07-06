@@ -32,7 +32,7 @@ build:
 	cp Makefile.lisc $(CURDIR)/ri5cy_gnu_toolchain/Makefile
 	cd $(CURDIR)/ri5cy_gnu_toolchain && make $(MAKE_FLAGS) $(GCC_FLAGS)
 	
-	cd $LISC/bin; \
+	cd $(LISC)/bin; \
 	FILES=$$(ls); \
 	for var in $$FILES; do \
 		mv -f $$var `echo "$$var" | sed 's/^...../lisc/'`; done
