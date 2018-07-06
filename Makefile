@@ -19,11 +19,7 @@ endif
 ifdef GCC5
 GCC_FLAGS ?= GCC5=1
 else
-ifdef GCC6
 GCC_FLAGS ?= GCC6=1
-else
-GCC_FLAGS ?= 
-endif
 endif
 
 .PHONY: build
