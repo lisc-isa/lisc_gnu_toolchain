@@ -11,7 +11,7 @@ ifdef ZEROLISC_PULP
 ARCH_FLAGS?=-march=IMXpulpslim -m16r
 else
 ifdef ZEROLISC
-ARCH_FLAGS?=-march=IMC -m16r
+ARCH_FLAGS?=-march=IM -m16r
 else
 ifdef MICROLISC
 ARCH_FLAGS?=-march=I -m16r
@@ -19,7 +19,7 @@ else
 ifdef LISC_FPU
 ARCH_FLAGS?=-march=IMFDXpulpv2 -m16r -mhard-float
 else
-ARCH_FLAGS?=-march=IMC -m16r
+ARCH_FLAGS?=-march=IM -m16r
 endif
 endif
 endif
@@ -43,6 +43,7 @@ build:
 				if [ "$$test" != "0" ]; then patch -p1 -N <$$tmp; fi \
 			done; \
 		fi
+	@echo $(ARCH_FLAGS)
 	mkdir -p $(BUILD_DIR)
 	cd $(BUILD_DIR) && $(TOOL_CHAIN_DIR)/configure --with-xlen=32 --with-arch=IM --disable-atomic --disable-float --disable-multilib --prefix=$(LISC)
 	cd $(BUILD_DIR) && make && make install
